@@ -1,30 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-website
+  name: website
   labels:
-    app: {{ .Release.Name }}-website
+    app: website
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: 1
   selector:
     matchLabels:
-      app: {{ .Release.Name }}-website
+      app: website
   template:
     metadata:
       labels:
-        app: {{ .Release.Name }}-website
+        app: website
     spec:
       containers:
         - name: website
-          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          image: tributech-ui-oauth-sample:latest
           ports:
             - containerPort: 80
           env:
             - name: KEYCLOAK_URL
-              value: "http://{{ .Values.keycloakHostname }}"
+              value: "http://keycloak.local/auth"
             - name: DATABASE_URL
-              value: "postgresql://{{ .Values.postgresqlUsername }}:{{ .Values.postgresqlPassword }}@{{ .Values.postgresqlServiceName }}:5432/{{ .Values.postgresqlDatabase }}"
-          resources:
-            {{- toYaml .Values.resources | nindent 12 }}
-      imagePullSecrets:
-        - name: {{ .Values.imagePullSecrets }}
+              value: "postgresql://keycloak:keycloakpassword@postgresql:5432/keycloakdb"

@@ -1,14 +1,14 @@
 {{/*
 Generate the name of the chart
 */}}
-{{- define "keycloak.name" -}}
+{{- define "pgadmin.name" -}}
 {{- .Chart.Name -}}
 {{- end -}}
 
 {{/*
 Generate the fullname of the chart
 */}}
-{{- define "keycloak.fullname" -}}
+{{- define "pgadmin.fullname" -}}
 {{- if .Values.fullnameOverride -}}
 {{- .Values.fullnameOverride -}}
 {{- else -}}
@@ -19,16 +19,16 @@ Generate the fullname of the chart
 {{/*
 Generate the chart name and version
 */}}
-{{- define "keycloak.chart" -}}
+{{- define "pgadmin.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version -}}
 {{- end -}}
 
 {{/*
 Generate the labels for the chart
 */}}
-{{- define "keycloak.labels" -}}
-app.kubernetes.io/name: {{ include "keycloak.name" . }}
-helm.sh/chart: {{ include "keycloak.chart" . }}
+{{- define "pgadmin.labels" -}}
+app.kubernetes.io/name: {{ include "pgadmin.name" . }}
+helm.sh/chart: {{ include "pgadmin.chart" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end -}}

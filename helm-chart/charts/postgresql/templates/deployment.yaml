@@ -3,12 +3,9 @@ kind: Deployment
 metadata:
   name: {{ include "postgresql.fullname" . }}
   labels:
-    app: {{ include "postgresql.name" . }}
-    chart: {{ include "postgresql.chart" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+    {{ include "postgresql.labels" . | nindent 4 }}
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: 1
   selector:
     matchLabels:
       app: {{ include "postgresql.name" . }}
@@ -19,34 +16,16 @@ spec:
     spec:
       containers:
         - name: postgresql
-          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: POSTGRES_USER
-              valueFrom:
-                secretKeyRef:
-                  name: {{ include "postgresql.fullname" . }}-secret
-                  key: postgresql-username
+              value: {{ .Values.username | quote }}
             - name: POSTGRES_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: {{ include "postgresql.fullname" . }}-secret
-                  key: postgresql-password
+              value: {{ .Values.password | quote }}
             - name: POSTGRES_DB
-              value: {{ .Values.postgresql.database }}
+              value: {{ .Values.database | quote }}
           ports:
             - name: postgresql
               containerPort: 5432
               protocol: TCP
-          resources:
-            {{- toYaml .Values.resources | nindent 12 }}
-      securityContext:
-        fsGroup: 1001
-        runAsUser: 1001
-      volumeMounts:
-        - name: postgresql-data
-          mountPath: /var/lib/postgresql/data
-      volumes:
-        - name: postgresql-data
-          persistentVolumeClaim:
-            claimName: {{ include "postgresql.fullname" . }}-pvc

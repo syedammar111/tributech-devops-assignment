@@ -2,10 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: website-config
-  namespace: {{ .Release.Namespace }}
+  namespace: default
 data:
-  # Configuration settings for the website
-  KEYCLOAK_URL: "http://{{ .Values.keycloakHostname }}"
-  PGADMIN_URL: "http://{{ .Values.pgadminHostname }}"
-  DATABASE_URL: "postgresql://{{ .Values.postgresqlUsername }}:{{ .Values.postgresqlPassword }}@{{ .Values.postgresqlServiceName }}:5432/{{ .Values.postgresqlDatabase }}"
-  # Additional configuration can be added here as needed
+  KEYCLOAK_URL: "http://keycloak.local/auth"
+  DATABASE_URL: "postgresql://keycloak:keycloakpassword@postgresql:5432/keycloakdb"

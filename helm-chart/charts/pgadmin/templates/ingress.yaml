@@ -1,24 +1,18 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: pgadmin-ingress
+  name: {{ include "pgadmin.fullname" . }}
   labels:
-    app: pgadmin
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    {{ include "pgadmin.labels" . | nindent 4 }}
 spec:
   rules:
-    - host: {{ .Values.pgadmin.ingress.hostname }}
+    - host: {{ .Values.ingress.hostname }}
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: pgadmin
+                name: {{ include "pgadmin.fullname" . }}
                 port:
                   number: 80
-  tls:
-    - hosts:
-        - {{ .Values.pgadmin.ingress.hostname }}
-      secretName: pgadmin-tls-secret

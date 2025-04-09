@@ -16,3 +16,10 @@ made helm charts for all svcs of keycloak pgadmin postgres and webapp as given i
 
 
 
+To run:
+
+$ cd helm-chart/
+
+$ helm template tributech ./ -f values.yaml --debug
+
+

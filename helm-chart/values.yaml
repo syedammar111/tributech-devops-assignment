@@ -1,26 +1,48 @@
+# Keycloak configuration
 keycloak:
   ingress:
     enabled: true
     hostname: keycloak.local
+  fullnameOverride: ""
 
+# PostgreSQL configuration
 postgresql:
   username: keycloak
   password: keycloakpassword
   database: keycloakdb
+  image:
+    repository: postgres
+    tag: "13"
+    pullPolicy: IfNotPresent
+  resources: {}
 
+# PGAdmin configuration
 pgadmin:
-  ingress:
-    enabled: true
-    hostname: pgadmin.local
   admin:
     email: admin@example.com
     password: adminpassword
+  ingress:
+    enabled: true
+    hostname: pgadmin.local
 
+# Website configuration
 website:
+  image:
+    repository: tributech-ui-oauth-sample
+    tag: latest
+    pullPolicy: IfNotPresent
+  service:
+    type: ClusterIP
+    port: 80
   ingress:
     enabled: true
     hostname: website.local
-  keycloakHostname: keycloak.local
+    path: /
+  env:
+    KEYCLOAK_URL: "http://keycloak.local/auth"
+    KEYCLOAK_REALM: "myrealm"
+    KEYCLOAK_CLIENT_ID: "myclient"
+    KEYCLOAK_CLIENT_SECRET: "myclientsecret"
   postgresqlUsername: keycloak
   postgresqlPassword: keycloakpassword
   postgresqlServiceName: postgresql
