@@ -3,13 +3,11 @@ kind: Service
 metadata:
   name: {{ include "postgresql.fullname" . }}
   labels:
-    {{- include "postgresql.labels" . | nindent 4 }}
+    app: {{ include "postgresql.fullname" . }}
 spec:
   type: ClusterIP
   ports:
     - port: 5432
       targetPort: 5432
-      protocol: TCP
-      name: postgres
   selector:
-    {{- include "postgresql.selectorLabels" . | nindent 4 }}
+    app: {{ include "postgresql.fullname" . }}
