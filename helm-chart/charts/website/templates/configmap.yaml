@@ -5,7 +5,7 @@ metadata:
   namespace: {{ .Release.Namespace }}
 data:
   # Configuration settings for the website
-  KEYCLOAK_URL: "http://{{ .Values.keycloak.ingress.hostname }}"
-  PGADMIN_URL: "http://{{ .Values.pgadmin.ingress.hostname }}"
-  DATABASE_URL: "postgresql://{{ .Values.postgresql.username }}:{{ .Values.postgresql.password }}@{{ .Values.postgresql.service.name }}:5432/{{ .Values.postgresql.database }}"
+  KEYCLOAK_URL: "http://{{ .Values.keycloakHostname }}"
+  PGADMIN_URL: "http://{{ .Values.pgadminHostname }}"
+  DATABASE_URL: "postgresql://{{ .Values.postgresqlUsername }}:{{ .Values.postgresqlPassword }}@{{ .Values.postgresqlServiceName }}:5432/{{ .Values.postgresqlDatabase }}"
   # Additional configuration can be added here as needed

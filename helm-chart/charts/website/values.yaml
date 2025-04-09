@@ -2,7 +2,7 @@
 
 hostname: website.local
 image:
-  repository: tributech/website
+  repository: tributech-ui-oauth-sample
   tag: latest
   pullPolicy: IfNotPresent
 service:
