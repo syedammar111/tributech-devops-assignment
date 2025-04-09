@@ -3,6 +3,13 @@ keycloak:
   ingress:
     enabled: true
     hostname: keycloak.local
+  image:
+    repository: quay.io/keycloak/keycloak
+    tag: latest
+    pullPolicy: IfNotPresent
+  service:
+    type: ClusterIP
+    port: 8080
   fullnameOverride: ""
 
 # PostgreSQL configuration

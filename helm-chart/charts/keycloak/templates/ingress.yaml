@@ -1,24 +1,24 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: keycloak-ingress
+  name: {{ include "keycloak.fullname" . }}
   labels:
-    app: keycloak
+    {{ include "keycloak.labels" . | nindent 4 }}
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-    - host: {{ .Values.keycloak.ingress.hostname }}
+    - host: {{ .Values.ingress.hostname }}
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: keycloak
+                name: {{ include "keycloak.fullname" . }}
                 port:
                   number: 8080
   tls:
     - hosts:
-        - {{ .Values.keycloak.ingress.hostname }}
+        - {{ .Values.ingress.hostname }}
       secretName: keycloak-tls-secret

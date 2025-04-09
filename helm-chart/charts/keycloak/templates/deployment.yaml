@@ -1,21 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "keycloak.fullname" . }}
+  name: keycloak
   labels:
-    app: {{ include "keycloak.name" . }}
-    chart: {{ include "keycloak.chart" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+    app: keycloak
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: 1
   selector:
     matchLabels:
-      app: {{ include "keycloak.name" . }}
+      app: keycloak
   template:
     metadata:
       labels:
-        app: {{ include "keycloak.name" . }}
+        app: keycloak
     spec:
       containers:
         - name: keycloak
@@ -23,37 +20,18 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: DB_VENDOR
-              value: "POSTGRES"
+              value: postgres
             - name: DB_ADDR
-              value: {{ .Values.postgresql.host }}
+              value: {{ .Values.keycloak.postgresql.host | quote }}
+            - name: DB_PORT
+              value: {{ .Values.keycloak.postgresql.port | quote }}
             - name: DB_DATABASE
-              value: {{ .Values.postgresql.database }}
+              value: {{ .Values.keycloak.postgresql.database | quote }}
             - name: DB_USER
-              valueFrom:
-                secretKeyRef:
-                  name: {{ include "keycloak.fullname" . }}-postgresql
-                  key: username
+              value: {{ .Values.keycloak.postgresql.username | quote }}
             - name: DB_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: {{ include "keycloak.fullname" . }}-postgresql
-                  key: password
+              value: {{ .Values.keycloak.postgresql.password | quote }}
           ports:
-            - containerPort: 8080
-              name: http
-            - containerPort: 8443
-              name: https
-          readinessProbe:
-            httpGet:
-              path: /auth/realms/master
-              port: http
-            initialDelaySeconds: 30
-            periodSeconds: 10
-          livenessProbe:
-            httpGet:
-              path: /auth/realms/master
-              port: http
-            initialDelaySeconds: 60
-            periodSeconds: 10
-      imagePullSecrets:
-        - name: {{ .Values.imagePullSecrets }}
+            - name: http
+              containerPort: 8080
+              protocol: TCP
