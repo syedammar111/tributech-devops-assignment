@@ -1,0 +1,27 @@
+keycloak:
+  ingress:
+    enabled: true
+    hostname: keycloak.local
+
+postgresql:
+  username: keycloak
+  password: keycloakpassword
+  database: keycloakdb
+
+pgadmin:
+  ingress:
+    enabled: true
+    hostname: pgadmin.local
+  admin:
+    email: admin@example.com
+    password: adminpassword
+
+website:
+  ingress:
+    enabled: true
+    hostname: website.local
+  keycloakHostname: keycloak.local
+  postgresqlUsername: keycloak
+  postgresqlPassword: keycloakpassword
+  postgresqlServiceName: postgresql
+  postgresqlDatabase: keycloakdb

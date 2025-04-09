@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-website
+  labels:
+    app: {{ .Release.Name }}-website
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-website
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-website
+    spec:
+      containers:
+        - name: website
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          ports:
+            - containerPort: 80
+          env:
+            - name: KEYCLOAK_URL
+              value: "http://{{ .Values.keycloakHostname }}"
+            - name: DATABASE_URL
+              value: "postgresql://{{ .Values.postgresqlUsername }}:{{ .Values.postgresqlPassword }}@{{ .Values.postgresqlServiceName }}:5432/{{ .Values.postgresqlDatabase }}"
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      imagePullSecrets:
+        - name: {{ .Values.imagePullSecrets }}

@@ -1,0 +1,26 @@
+# File: /tributech-devops-assignment/tributech-devops-assignment/helm-chart/charts/website/values.yaml
+
+hostname: website.local
+image:
+  repository: tributech/website
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  port: 80
+ingress:
+  hostname: website.local
+  enabled: true
+  path: /
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+  tls:
+    enabled: false
+    secretName: website-tls
+    hosts:
+      - website.local
+env:
+  KEYCLOAK_URL: "http://keycloak.local/auth"
+  KEYCLOAK_REALM: "myrealm"
+  KEYCLOAK_CLIENT_ID: "myclient"
+  KEYCLOAK_CLIENT_SECRET: "myclientsecret"

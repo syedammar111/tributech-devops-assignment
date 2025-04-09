@@ -1,0 +1,23 @@
+name: pgadmin
+version: 0.1.0
+description: A Helm chart for deploying PGAdmin
+type: application
+
+maintainers:
+  - name: Tributech
+    email: support@tributech.com
+
+keywords:
+  - pgadmin
+  - database
+  - helm
+  - kubernetes
+
+dependencies:
+  - name: postgresql
+    version: 0.1.0
+    repository: file://../postgresql
+
+icon: https://www.pgadmin.org/static/img/pgadmin4.png
+
+# This file defines the PGAdmin sub-chart with its metadata.

@@ -1,0 +1,15 @@
+dependencies:
+- name: keycloak
+  repository: file://charts/keycloak
+  version: 0.1.0
+- name: postgresql
+  repository: file://charts/postgresql
+  version: 0.1.0
+- name: pgadmin
+  repository: file://charts/pgadmin
+  version: 0.1.0
+- name: website
+  repository: file://charts/website
+  version: 0.1.0
+digest: sha256:0ba336a86f4dcb24577efbbd9884ae2f063af430766209fd086143a5a3affcfc
+generated: "2025-04-09T20:59:18.354305663+02:00"

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: website-config
+  namespace: {{ .Release.Namespace }}
+data:
+  # Configuration settings for the website
+  KEYCLOAK_URL: "http://{{ .Values.keycloak.ingress.hostname }}"
+  PGADMIN_URL: "http://{{ .Values.pgadmin.ingress.hostname }}"
+  DATABASE_URL: "postgresql://{{ .Values.postgresql.username }}:{{ .Values.postgresql.password }}@{{ .Values.postgresql.service.name }}:5432/{{ .Values.postgresql.database }}"
+  # Additional configuration can be added here as needed

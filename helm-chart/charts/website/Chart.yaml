@@ -1,0 +1,30 @@
+name: website
+version: 0.1.0
+description: A Helm chart for deploying a website that integrates with Keycloak for authentication.
+type: application
+
+dependencies:
+  - name: keycloak
+    version: 0.1.0
+    repository: file://../keycloak
+  - name: postgresql
+    version: 0.1.0
+    repository: file://../postgresql
+  - name: pgadmin
+    version: 0.1.0
+    repository: file://../pgadmin
+
+maintainers:
+  - name: Your Name
+    email: your.email@example.com
+
+keywords:
+  - website
+  - keycloak
+  - authentication
+  - helm
+  - kubernetes
+
+home: https://example.com/website
+sources:
+  - https://github.com/your-repo/website
