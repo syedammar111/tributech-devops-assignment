@@ -1,0 +1,38 @@
+replicaCount: 1
+
+image:
+  repository: tributech-ui-oauth-sample
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  name: ""
+
+service:
+  type: ClusterIP
+  port: 4200
+
+ingress:
+  enabled: true
+  className: nginx
+  host: website.local
+  path: /
+  pathType: Prefix
+
+resources:
+  limits:
+    cpu: 200m
+    memory: 256Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+keycloak:
+  url: "http://keycloak.local"
+  realm: "master"
+  clientId: "website"
+  clientSecret: "your-client-secret"

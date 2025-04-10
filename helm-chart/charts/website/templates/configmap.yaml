@@ -1,8 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: website-config
-  namespace: default
-data:
-  KEYCLOAK_URL: "http://keycloak.local/auth"
-  DATABASE_URL: "postgresql://keycloak:keycloakpassword@postgresql:5432/keycloakdb"
