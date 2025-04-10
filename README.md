@@ -151,4 +151,4 @@ tributech-devops-chart/
 
 ![Tributech DevOps Architecture](image.png "Tributech DevOps System Architecture")
 
-![Alt Text](./images/example.png)
+![Tributech DevOps Architecture](image2.png "Tributech DevOps System Architecture")
