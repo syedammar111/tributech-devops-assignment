@@ -46,7 +46,7 @@ helm install tributech-devops .
 postgresql:
   auth:
     username: keycloak
-    password: keycloakpassword
+    password: XuJyZlntI7
     database: keycloakdb
   primary:
     persistence:
@@ -71,7 +71,7 @@ keycloak:
 pgadmin:
   env:
     email: admin@example.com
-    password: admin123
+    password: SuperSecret
   ingress:
     enabled: true
     hosts:
