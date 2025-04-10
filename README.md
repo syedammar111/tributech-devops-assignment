@@ -149,4 +149,6 @@ tributech-devops-chart/
     └── website/       # Website subchart
 ```
 
-(image.png)
+![Tributech DevOps Architecture](image.png "Tributech DevOps System Architecture")
+
+![Alt Text](./images/example.png)
