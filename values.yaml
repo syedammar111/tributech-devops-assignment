@@ -5,7 +5,7 @@ keycloak:
 
 postgresql:
   username: keycloak
-  password: keycloakpassword
+  password: XuJyZlntI7
   database: keycloakdb
 
 pgadmin:
@@ -14,7 +14,7 @@ pgadmin:
     hostname: pgadmin.local
   admin:
     email: admin@example.com
-    password: adminpassword
+    password: SuperSecret
 
 website:
   fullname: tributech
