@@ -2,7 +2,7 @@
 
 A comprehensive Helm chart for deploying Keycloak authentication, PostgreSQL database, PGAdmin, and a sample OAuth website.
 
-## 🚀 Quick Start
+##  Quick Start
 
 ```bash
 # Start Minikube
@@ -21,7 +21,7 @@ helm repo update
 helm install tributech-devops .
 ```
 
-## 📋 Prerequisites
+##  Prerequisites
 
 - Kubernetes 1.29.0+
 - Helm v3.0.0+
@@ -29,7 +29,7 @@ helm install tributech-devops .
 - Minikube
 - NGINX Ingress Controller
 
-## 🏗️ Components
+##  Components
 
 | Component | Description | Default URL |
 |-----------|-------------|-------------|
@@ -38,7 +38,7 @@ helm install tributech-devops .
 | PGAdmin | Database management | http://pgadmin.local |
 | Website | OAuth sample application | http://website.local |
 
-## ⚙️ Configuration
+##  Configuration
 
 ### PostgreSQL
 
@@ -92,7 +92,7 @@ website:
     clientId: "website"
 ```
 
-## 🔍 Validation
+##  Validation
 
 ```bash
 # Check pod status
@@ -106,7 +106,7 @@ kubectl logs -l app=keycloak
 kubectl logs -l app=website
 ```
 
-## 🔧 Troubleshooting
+##  Troubleshooting
 
 ### Common Issues
 
@@ -126,7 +126,7 @@ kubectl logs -l app=website
    minikube ip  # Check Minikube IP
    ```
 
-## 🧹 Cleanup
+##  Cleanup
 
 ```bash
 # Uninstall chart
@@ -136,7 +136,7 @@ helm uninstall tributech-devops
 kubectl delete pvc --selector=app.kubernetes.io/instance=tributech-devops
 ```
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 tributech-devops-chart/
@@ -148,6 +148,8 @@ tributech-devops-chart/
     ├── pgadmin/       # PGAdmin subchart
     └── website/       # Website subchart
 ```
+
+# Screenshots
 
 ![Tributech DevOps Architecture](image.png "Tributech DevOps System Architecture")
 
