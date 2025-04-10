@@ -149,21 +149,4 @@ tributech-devops-chart/
     └── website/       # Website subchart
 ```
 
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create your feature branch
-   ```bash
-   git checkout -b feature/amazing-feature
-   ```
-3. Commit your changes
-4. Push to the branch
-5. Open a Pull Request
-
-## 📝 License
-
-This project is licensed under the MIT License.
-
-## 📫 Support
-
-For support, please open an issue in the GitHub repository.
+(image.png)
